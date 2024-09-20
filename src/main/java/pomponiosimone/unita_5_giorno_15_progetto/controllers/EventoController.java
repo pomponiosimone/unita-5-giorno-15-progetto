@@ -4,6 +4,7 @@ package pomponiosimone.unita_5_giorno_15_progetto.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,7 @@ public class EventoController {
     // POST
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ORGANIZZATORE')")
     @ResponseStatus(HttpStatus.CREATED)
     public NewEventoRespDTO saveEvent(@RequestBody @Validated NewEventoDTO body, BindingResult validationResult){            // @Validated serve per 'attivare' le regole di validazione descritte nel DTO
         if (validationResult.hasErrors()){
@@ -51,12 +53,15 @@ public class EventoController {
     }
 
 //Modifica
+
     @PutMapping("/{eventoId}")
+    @PreAuthorize("hasAuthority('ORGANIZZATORE')")
     public Evento findByEventIdAndUpdate(@PathVariable UUID eventoId,@RequestBody Evento body){
         return this.eventoService.findByIdAndUpdate(eventoId,body);
     }
 //Elimina
 @DeleteMapping("/{eventoId}")
+@PreAuthorize("hasAuthority('ORGANIZZATORE')")
 @ResponseStatus(HttpStatus.NO_CONTENT)
 public Evento findByIdAndDelete(@PathVariable UUID eventoId){
     this.eventoService.findByIdAndDelete(eventoId);
