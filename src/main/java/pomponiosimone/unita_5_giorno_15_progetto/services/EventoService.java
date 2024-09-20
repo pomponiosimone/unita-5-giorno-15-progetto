@@ -8,9 +8,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pomponiosimone.unita_5_giorno_15_progetto.entities.Evento;
+import pomponiosimone.unita_5_giorno_15_progetto.entities.Utente;
 import pomponiosimone.unita_5_giorno_15_progetto.exceptions.NotFoundException;
 import pomponiosimone.unita_5_giorno_15_progetto.payloads.NewEventoDTO;
 import pomponiosimone.unita_5_giorno_15_progetto.repositories.EventoRepository;
+import pomponiosimone.unita_5_giorno_15_progetto.repositories.UtentiRepository;
 
 
 import java.util.UUID;
@@ -21,7 +23,8 @@ public class EventoService {
 
     @Autowired
     private EventoRepository eventoRepository;
-
+@Autowired
+private UtentiRepository utentiRepository;
 //GET ALL
 
     public Page<Evento> findAllEventi(int page, int size, String sortBy) {
@@ -38,6 +41,8 @@ public class EventoService {
     //salvataggio
 
     public Evento saveEvento(NewEventoDTO body) {
+        Utente organizzatore = utentiRepository.findById(body.organizzatoreId())
+                .orElseThrow(() -> new NotFoundException("Organizzatore non trovato"));
         Evento newEvent = new Evento(body.titolo(), body.descrizione(), body.luogo(), body.postiDisponibili(), body.data());
 
         return this.eventoRepository.save(newEvent);

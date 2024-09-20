@@ -28,7 +28,7 @@ public class Evento {
 
     @ManyToOne
     @JoinColumn(name = "organizzatore_id")
-    private Utente utente;
+    private Utente organizzatore;
     
     public Evento(String titolo, String descrizione, String luogo, int postiDisponibili, LocalDate data) {
         this.titolo = titolo;

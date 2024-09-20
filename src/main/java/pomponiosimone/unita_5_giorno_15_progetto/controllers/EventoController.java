@@ -41,7 +41,7 @@ public class EventoController {
     @PostMapping
     @PreAuthorize("hasAuthority('ORGANIZZATORE')")
     @ResponseStatus(HttpStatus.CREATED)
-    public NewEventoRespDTO saveEvent(@RequestBody @Validated NewEventoDTO body, BindingResult validationResult){            // @Validated serve per 'attivare' le regole di validazione descritte nel DTO
+    public NewEventoRespDTO saveEvent(@RequestBody @Validated NewEventoDTO body, BindingResult validationResult){
         if (validationResult.hasErrors()){
             String messages = validationResult.getAllErrors().stream()
                     .map(objectError -> objectError.getDefaultMessage())
