@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -23,13 +23,13 @@ public class Evento {
     private String titolo;
     private String descrizione;
     private int postiDisponibili;
-    private Date data;
+    private LocalDate data;
     private String luogo;
 
     @JoinColumn(name = "organizzatore_id")
     private Utente utente;
     
-    public Evento(String titolo, String descrizione, String luogo, int postiDisponibili, Date data) {
+    public Evento(String titolo, String descrizione, String luogo, int postiDisponibili, LocalDate data) {
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.luogo = luogo;
