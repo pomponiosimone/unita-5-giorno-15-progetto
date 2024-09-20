@@ -1,11 +1,10 @@
 package pomponiosimone.unita_5_giorno_15_progetto.payloads;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-import java.util.UUID;
+
 
 public record NewEventoDTO(
         @NotEmpty(message = "Inserisci titolo")
