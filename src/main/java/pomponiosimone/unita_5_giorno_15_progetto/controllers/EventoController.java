@@ -32,14 +32,14 @@ public class EventoController {
     }
     // GET ID
     @GetMapping("/{eventoId}")
-    public Evento findByEventId(@PathVariable UUID eventId){return this.eventoService.findByEventId(eventId);}
+    public Evento findByEventId(@PathVariable UUID eventoId){return this.eventoService.findByEventId(eventoId);}
 
 
     // POST
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public NewEventoRespDTO saveUser(@RequestBody @Validated NewEventoDTO body, BindingResult validationResult){            // @Validated serve per 'attivare' le regole di validazione descritte nel DTO
+    public NewEventoRespDTO saveEvent(@RequestBody @Validated NewEventoDTO body, BindingResult validationResult){            // @Validated serve per 'attivare' le regole di validazione descritte nel DTO
         if (validationResult.hasErrors()){
             String messages = validationResult.getAllErrors().stream()
                     .map(objectError -> objectError.getDefaultMessage())
