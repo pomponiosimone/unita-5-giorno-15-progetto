@@ -1,9 +1,6 @@
 package pomponiosimone.unita_5_giorno_15_progetto.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +26,8 @@ public class Evento {
     private Date data;
     private String luogo;
 
+    @JoinColumn(name = "organizzatore_id")
+    private Utente utente;
     
     public Evento(String titolo, String descrizione, String luogo, int postiDisponibili, Date data) {
         this.titolo = titolo;
