@@ -19,10 +19,10 @@ public class UtentiController {
 
 
     //Get By ID
-    @GetMapping("/{userId}")
-    public Utente findById(@PathVariable UUID userId) {
-        return this.utentiService.findById(userId);
+    @GetMapping("/{utenteId}")
+    public Utente findById(@PathVariable UUID utenteId) {
+        return this.utentiService.findById(utenteId);
     }
-
+     //GET ALL
     @GetMapping
     public List<Utente> findAll() { return utentiService.findAll();}}

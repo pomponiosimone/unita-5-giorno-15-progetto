@@ -33,13 +33,15 @@ public class Utente implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public Utente(String cognome, String email, String nome, String password, Role role) {
+    public Utente(String cognome, String email, String nome, String password, String role) {
         this.cognome = cognome;
         this.email = email;
         this.nome = nome;
         this.password = password;
-        this.role = role;
+        this.role = Role.valueOf(role);
     }
+
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
